@@ -1,0 +1,18 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    container_name: api-shipping-deepblu
+    build: 
+      context: .
+      dockerfile: ./Dockerfile-dev
+    image: api-shipping-deepblu:1.0
+    ports:
+      - "8003:8003"
+    volumes: ['./:/apps']
+    working_dir: /apps
+    restart: always
+    networks:
+      - deepblu
+networks:
+  deepblu:
+    external: true
