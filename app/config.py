@@ -21,8 +21,13 @@ class Config(object):
         config('MYSQL_PASSWORD', default=str(os.getenv('MYSQL_PASSWORD'))),
         config('MYSQL_URL', default=str(os.getenv('MYSQL_URL'))),
         config('MYSQL_PORT', default=str(os.getenv('MYSQL_PORT'))),
-        config('MYSQL_DB', default=str(os.getenv('MYSQL_DB')))
+        config('MYSQL_DB', default=str(os.getenv('MYSQL_DB_SHIPPING')))
     )
+
+    SQLALCHEMY_BINDS = {
+        'db_deepblu': 'mysql://'+str(os.getenv("MYSQL_USER"))+':'+str(os.getenv("MYSQL_PASSWORD"))+'@'+str(os.getenv("MYSQL_URL"))+':'+str(os.getenv("MYSQL_PORT"))+'/'+str(os.getenv("MYSQL_DB_DEEPBLU")) 
+    }
+
 
 
 class ProductionConfig(Config):
