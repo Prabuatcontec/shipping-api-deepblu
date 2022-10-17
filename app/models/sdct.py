@@ -40,20 +40,27 @@ class SdctModel(db.Model):
             setattr(self, property, value)
 
     def __repr__(self):
-        return 'SdctModel(id=%d)' % (self.id)
+        return 'SdctModel(id=%d)' % (self.SDCT_ID)
 
     def json(self):
         return { 
-                        "id": self.id 
+                        "id": self.SDCT_ID 
                     }
  
     @classmethod
     def find_by_id(cls, _id) -> "SdctModel":
-        return cls.query.filter_by(id=_id).first()
+        return cls.query.filter_by(SDCT_ID=_id).first()
       
     @classmethod
     def find_all(cls) -> List["SdctModel"]:
         return cls.query.all()
+    
+    @classmethod
+    def find_all_by_filter(cls, filter, order_by, order_direction) -> List["SdctModel"]: 
+            filters = [getattr(cls, attribute) == value for attribute, value in filter.items()] 
+            print(filters)
+            direction = desc if order_direction == 'desc' else asc
+            return cls.query.filter(and_(*filters)).order_by(direction(getattr(cls, order_by))).all()
  
     
 

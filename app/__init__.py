@@ -8,6 +8,7 @@ from flask_restplus import Api
 from app.ma import ma
 from app.db import db 
 from app.resources.health import Health, health_ns  
+from app.resources.shippingdata import  shipping_data_ns, ShippingsdataList, Shippingdata, shipping_datas_ns
 from marshmallow import ValidationError
 from app.config import config_dict
 from decouple import config
@@ -45,6 +46,8 @@ app.register_blueprint(bluePrint)
 
 
 api.add_namespace(health_ns)  
+api.add_namespace(shipping_datas_ns)  
+api.add_namespace(shipping_data_ns)
 
 
 
@@ -60,5 +63,7 @@ def handle_validation_error(error):
 
 
 health_ns.add_resource(Health, "") 
+shipping_datas_ns.add_resource(ShippingsdataList,"")
+shipping_data_ns.add_resource(Shippingdata,"/<int:id>")
 db.init_app(app)
 ma.init_app(app)

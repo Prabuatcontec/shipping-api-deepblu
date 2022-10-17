@@ -1,7 +1,7 @@
 from array import array
 from datetime import datetime
 from flask import jsonify, request, session
-class Invoicevalidator(object):
+class Shippingvalidater(object):
     def rule(self):
         rule = {
         "invoice_terms": "required|string",

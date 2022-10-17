@@ -1,12 +1,12 @@
 from app.ma import ma
-from app.models.shippings import InvoicesModel
+from app.models.sdct import SdctModel 
 from app.db import db 
 
 
-class shippingSchema(ma.SQLAlchemyAutoSchema):
+class ShippingdataSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
-        model = InvoicesModel 
+        model = SdctModel 
         load_instance = True
         include_relationships  = True
         sqla_session = db.session 

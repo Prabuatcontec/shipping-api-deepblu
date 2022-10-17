@@ -19,6 +19,7 @@ RUN apt-get -y install libmysqlclient-dev
 RUN apt-get -y install gcc
 RUN apt install -y git
 RUN apt install -y cmake
+
 RUN pip3 install -r requirements.txt
 COPY . /apps
 WORKDIR /apps
@@ -41,7 +42,7 @@ RUN pip3 install mysqlclient
 RUN pip3 install Jinja2
 RUN pip3 install webargs
 RUN pip3 install validator
-
+RUN pip3 install fedex
 EXPOSE 9003
 HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=5 \
     CMD curl -f http://localhost:9003/api/health || exit 1
