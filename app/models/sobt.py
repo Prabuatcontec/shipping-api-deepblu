@@ -10,22 +10,22 @@ from sqlalchemy import asc, and_, desc
 
 
 class SobtModel(db.Model):
-    __tablename__ = "SGCT"
+    __tablename__ = "SOBT"
 
-    SOBT_ID = db.Column(db.Integer, primary_key=True)
-    SOBT_BatchID = db.Column(db.String(50), nullable=False)
-    SOBT_CusDivID = db.Column(db.Integer, nullable=False)
-    SOBT_Status = db.Column(db.Integer, nullable=False)
-    SOBT_OrderType = db.Column(db.Integer, nullable=False)
-    SOBT_CustomRef = db.Column(db.Integer, nullable=True)
-    SOBT_LastChangedDate = db.Column(db.String(10))
-    SOBT_LastChangedTime = db.Column(db.String(8))
-    SOBT_LastChangedUser = db.Column(db.String(15))
-    SOBT_AddDate =  db.Column(db.String(10), nullable=False)
-    SOBT_AddTime = db.Column(db.String(8))
-    SOBT_AddUser = db.Column(db.String(15))
-    SOBT_SortDesc = db.Column(db.String(255))
-    SOBT_Marker = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True, name="SOBT_ID")
+    batch_id = db.Column(db.String(50), nullable=False, name="SOBT_BatchID")
+    cus_div_id = db.Column(db.Integer, nullable=False, name="SOBT_CusDivID")
+    status = db.Column(db.Integer, nullable=False, name="SOBT_Status")
+    order_type = db.Column(db.Integer, nullable=False, name="SOBT_OrderType")
+    custom_ref = db.Column(db.Integer, nullable=True, name="SOBT_CustomRef")
+    last_changed_date = db.Column(db.String(10), name="SOBT_LastChangedDate")
+    last_changed_time = db.Column(db.String(8), name="SOBT_LastChangedTime")
+    last_changed_user = db.Column(db.String(15), name="SOBT_LastChangedUser")
+    add_date =  db.Column(db.String(10), nullable=False, name="SOBT_AddDate")
+    add_time = db.Column(db.String(8), name="SOBT_AddTime")
+    add_user = db.Column(db.String(15), name="SOBT_AddUser")
+    sort_desc = db.Column(db.String(255), name="SOBT_SortDesc")
+    marker = db.Column(db.Integer, name="SOBT_Marker")
     
 
     def __init__(self, **kwargs):   

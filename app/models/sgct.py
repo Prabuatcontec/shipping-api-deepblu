@@ -12,18 +12,17 @@ from sqlalchemy import asc, and_, desc
 class SgctModel(db.Model):
     __tablename__ = "SGCT"
 
-    SGCT_ID = db.Column(db.Integer, primary_key=True)
-    SGCT_LinkTable = db.Column(db.String(50), nullable=False)
-    SGCT_LinkID = db.Column(db.String(25))
-    SGCT_Label = db.Column(db.String(25), nullable=True)
-    SGCT_Value = db.Column(db.String(1024), nullable=True)
-    SGCT_UnitNumber = db.Column(db.Integer, nullable=True)
-    SGCT_TheOtherWhiteMeat = db.Column(db.Integer)
-    SGCT_BatchID = db.Column(db.String(10))
-    SGCT_OrderID = db.Column(db.String(8))
-    SGCT_OrderLineID =  db.Column(db.String(15), nullable=False)
-    SGCT_AddDate = db.Column(db.Integer)
-    SGCT_AddTime = db.Column(db.String(50))
+    id = db.Column(db.Integer, primary_key=True, name="SGCT_ID")
+    link_table = db.Column(db.String(50), nullable=False, name="SGCT_LinkTable")
+    link_id = db.Column(db.String(25), name="SGCT_LinkID")
+    label = db.Column(db.String(25), nullable=True, name="SGCT_Label")
+    value = db.Column(db.String(1024), nullable=True, name="SGCT_Value")
+    unit_number = db.Column(db.Integer, nullable=True, name="SGCT_UnitNumber") 
+    batch_id = db.Column(db.String(10), name="SGCT_BatchID")
+    order_id = db.Column(db.String(8), name="SGCT_OrderID")
+    order_line_id =  db.Column(db.String(15), nullable=False, name="SGCT_OrderLineID")
+    add_date = db.Column(db.Integer, name="SGCT_AddDate")
+    add_time = db.Column(db.String(50), name="SGCT_AddTime")
     
 
     def __init__(self, **kwargs):   

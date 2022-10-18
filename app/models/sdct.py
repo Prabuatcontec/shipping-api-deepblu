@@ -12,24 +12,24 @@ from sqlalchemy import asc, and_, desc
 class SdctModel(db.Model):
     __tablename__ = "SDCT"
 
-    SDCT_ID = db.Column(db.Integer, primary_key=True)
-    SDCT_ShipID = db.Column(db.String(50), nullable=False)
-    SDCT_OrderID = db.Column(db.String(25), nullable=False)
-    SDCT_OrderLineID = db.Column(db.Integer, nullable=False)
-    SDCT_ShipLineID = db.Column(db.Integer, nullable=False)
-    SDCT_UnitNumber = db.Column(db.Integer, nullable=False)
-    SDCT_Label = db.Column(db.String(50), nullable=False)
-    SDCT_Data = db.Column(db.String(50), nullable=False)
-    SDCT_Status = db.Column(db.Integer, nullable=False)
-    SDCT_CustomRef = db.Column(db.Integer)
-    SDCT_AddDate = db.Column(db.String(10))
-    SDCT_AddTime = db.Column(db.String(8))
-    SDCT_AddUser =  db.Column(db.String(15), nullable=False)
-    SDCT_SortOrder = db.Column(db.Integer)
-    SDCT_DeviceType = db.Column(db.String(50))
-    SDCT_AltName = db.Column(db.String(20))
-    SDCT_Errors = db.Column(db.Integer)
-    SDCT_ScanType = db.Column(db.Integer) 
+    id = db.Column(db.Integer, primary_key=True, name="SDCT_ID")
+    ship_id = db.Column(db.String(50), nullable=False, name="SDCT_ShipID")
+    order_id = db.Column(db.String(25), nullable=False, name="SDCT_OrderID")
+    order_line_id = db.Column(db.Integer, nullable=False, name="SDCT_OrderLineID")
+    ship_line_id = db.Column(db.Integer, nullable=False, name="SDCT_ShipLineID")
+    unit_number = db.Column(db.Integer, nullable=False, name="SDCT_UnitNumber")
+    label = db.Column(db.String(50), nullable=False, name="SDCT_Label")
+    data = db.Column(db.String(50), nullable=False, name="SDCT_Data")
+    status = db.Column(db.Integer, nullable=False, name="SDCT_Status")
+    custom_ref = db.Column(db.Integer, name="SDCT_CustomRef")
+    add_date = db.Column(db.String(10), name="SDCT_AddDate")
+    add_time = db.Column(db.String(8), name="SDCT_AddTime")
+    add_user =  db.Column(db.String(15), nullable=False, name="SDCT_AddUser")
+    sort_order = db.Column(db.Integer, name="SDCT_SortOrder")
+    device_type = db.Column(db.String(50), name="SDCT_DeviceType")
+    alt_name = db.Column(db.String(20), name="SDCT_AltName")
+    errors = db.Column(db.Integer, name="SDCT_Errors")
+    scan_type = db.Column(db.Integer, name="SDCT_ScanType") 
     
 
     def __init__(self, **kwargs):   
@@ -40,16 +40,16 @@ class SdctModel(db.Model):
             setattr(self, property, value)
 
     def __repr__(self):
-        return 'SdctModel(id=%d)' % (self.SDCT_ID)
+        return 'SdctModel(id=%d)' % (self.id)
 
     def json(self):
         return { 
-                        "id": self.SDCT_ID 
+                        "id": self.id 
                     }
  
     @classmethod
     def find_by_id(cls, _id) -> "SdctModel":
-        return cls.query.filter_by(SDCT_ID=_id).first()
+        return cls.query.filter_by(id=_id).first()
       
     @classmethod
     def find_all(cls) -> List["SdctModel"]:
