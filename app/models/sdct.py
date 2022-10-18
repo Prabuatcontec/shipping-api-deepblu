@@ -14,7 +14,7 @@ class SdctModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, name="SDCT_ID")
     ship_id = db.Column(db.String(50), nullable=False, name="SDCT_ShipID")
-    order_id = db.Column(db.String(25), nullable=False, name="SDCT_OrderID")
+    order_id = db.Column(db.Integer, nullable=False, name="SDCT_OrderID")
     order_line_id = db.Column(db.Integer, nullable=False, name="SDCT_OrderLineID")
     ship_line_id = db.Column(db.Integer, nullable=False, name="SDCT_ShipLineID")
     unit_number = db.Column(db.Integer, nullable=False, name="SDCT_UnitNumber")

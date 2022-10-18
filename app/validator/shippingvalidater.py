@@ -1,94 +1,88 @@
 from array import array
-from datetime import datetime
+from datetime import datetime 
 from flask import jsonify, request, session
 class Shippingvalidater(object):
     def rule(self):
-        rule = {
-        "invoice_terms": "required|string",
-        "invoice_date":  self.date_time_validator, 
-        "due_date": self.date_time_validator,
-        "sub_total": self.func_float,
-        "tax_total_amount":self.func_float,
-        "shipping_charges":self.func_float,
-        "invoice_number":"required|string",
-        "total_invoice_amount":self.func_float,
-        "customer_note":"required|string",
-        "user_id":"required|integer",
-        "contact_id":"required|integer",
-        "salesperson_id":"required|integer",
-        "invoiceItems": self.func_invoiceItems}
+        rule = { 
+        "data":  self.func_shipping_data }
         return rule
 
         
-    def func_invoiceItems(self, items):
+    def func_shipping_data(self, items):
 
         ret = True
-        if isinstance(items, list):
+        print(items)
+        if isinstance(items, dict):
             result = {}
-            result["invoiceItems"] = {}
+            result["data"] = {}
             l = 0
             for item in items:
-                result["invoiceItems"][l] = {}
-                if 'id' in item:
-                    if not isinstance(item['id'], int): 
-                        result["invoiceItems"][l]["id"]  = "Id must be integer"
+                result["data"][l] = {}
+                if 'alt_name' in item:
+                    if not isinstance(item['id'], str): 
+                        result["data"][l]["alt_name"]  = "Alt Name must be string"
                         ret = False
                 else:
-                        result["invoiceItems"][l]["id"]  = "Id field required"
+                        result["data"][l]["alt_name"]  = "Alt Name is required"
                         ret = False
 
-                if 'user_id' in item:
-                    if not isinstance(item['user_id'], int): 
-                        result["invoiceItems"][l]["user_id"]  = "User Id must be integer"
+                if 'label' in item:
+                    if not isinstance(item['label'], str): 
+                        result["data"][l]["label"]  = "Label must be string"
                         ret = False 
+                else:
+                        result["data"][l]["label"]  = "Label Name is required"
+                        ret = False
 
-                if 'name' in item:
-                    if not isinstance(item['name'], str): 
-                        result["invoiceItems"][l]["name"]  = "Name must be String"
+                if 'device_type' in item:
+                    if not isinstance(item['device_type'], str): 
+                        result["data"][l]["device_type"]  = "Device Type must be string"
                         ret = False 
-
-                if 'description' in item:
-                    if not isinstance(item['description'], str): 
-                        result["invoiceItems"][l]["description"]  = "Description must be string"
-                        ret = False 
-                if 'upc' in item:
-                    if not isinstance(item['upc'], str): 
-                        result["invoiceItems"][l]["upc"]  = "UPC must be string"
-                        ret = False 
-
-                if 'sku' in item:
-                    if not isinstance(item['sku'], str): 
-                        result["invoiceItems"][l]["sku"]  = "SKU must be string"
-                        ret = False 
+                else:
+                        result["data"][l]["device_type"]  = "Device Type is required"
+                        ret = False
                 
-                if 'price' in item:
-                    if not isinstance(item['price'], int) and not isinstance(item['price'], float): 
-                        result["invoiceItems"][l]["price"]  = "Price must be float"
+                if 'order_line_id' in item:
+                    if not isinstance(item['order_line_id'], int): 
+                        result["data"][l]["order_line_id"]  = "Order Line Id must be integer"
                         ret = False 
+                else:
+                        result["data"][l]["order_line_id"]  = "Order Line Id is required"
+                        ret = False
                 
-                if 'quantity' in item:
-                    if not isinstance(item['quantity'], int): 
-                        result["invoiceItems"][l]["quantity"]  = "Quantity must be integer"
+                if 'ship_line_id' in item:
+                    if not isinstance(item['ship_line_id'], int): 
+                        result["data"][l]["ship_line_id"]  = "Ship Line Id must be integer"
                         ret = False 
+                else:
+                        result["data"][l]["ship_line_id"]  = "Ship Line Id is required"
+                        ret = False
                 
-                if 'total_amount' in item:
-                    if not isinstance(item['total_amount'], float) and not isinstance(item['price'], int): 
-                        result["invoiceItems"][l]["total_amount"]  = "Total Amount must be float"
-                        ret = False     
+                if 'add_user' in item:
+                    if not isinstance(item['add_user'], str): 
+                        result["data"][l]["add_user"]  = "Add User must be string"
+                        ret = False 
+                else:
+                        result["data"][l]["add_user"]  = "Add User is required"
+                        ret = False
                 
-                if 'created_at' in item and item['created_at'] !=None:
-                        rets = self.date_time_validator_no_zone(item['created_at'])
-                        if rets == False:
-                            ret = False
-                            result["invoiceItems"][l]["created_at"]  = "Created At invalide date formate"
+                if 'ship_id' in item:
+                    if not isinstance(item['ship_id'], str): 
+                        result["data"][l]["ship_id"]  = "Ship Id must be string"
+                        ret = False 
+                else:
+                        result["data"][l]["ship_id"]  = "Ship Id is required"
+                        ret = False
                 
-                if 'updated_at' in item and item['updated_at'] !=None:
-                        rets = self.date_time_validator_no_zone(item['updated_at']) 
-                        if rets == False:
-                            ret = False
-                            result["invoiceItems"][l]["updated_at"]  = "Updated At invalide date formate"
-                if len(result["invoiceItems"][l]) == 0:
-                    del result["invoiceItems"][l]
+                if 'order_id' in item:
+                    if not isinstance(item['order_id'], str): 
+                        result["data"][l]["order_id"]  = "Order Id must be string"
+                        ret = False 
+                else:
+                        result["data"][l]["order_id"]  = "Order Id is required"
+                        ret = False
+                if len(result["data"][l]) == 0:
+                    del result["data"][l]
                 l = l + 1
 
                         

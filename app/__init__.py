@@ -65,5 +65,6 @@ def handle_validation_error(error):
 health_ns.add_resource(Health, "") 
 shipping_datas_ns.add_resource(ShippingsdataList,"")
 shipping_data_ns.add_resource(Shippingdata,"/<int:id>")
+shipping_data_ns.add_resource(Shippingdata,"")
 db.init_app(app)
 ma.init_app(app)
