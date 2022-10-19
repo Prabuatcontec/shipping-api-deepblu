@@ -43,6 +43,7 @@ RUN pip3 install Jinja2
 RUN pip3 install webargs
 RUN pip3 install validator
 RUN pip3 install fedex
+RUN pip3 install Flask-AppBuilder
 EXPOSE 9003
 HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=5 \
     CMD curl -f http://localhost:9003/api/health || exit 1
