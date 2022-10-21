@@ -1,20 +1,30 @@
 import datetime
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, Text
+from sqlalchemy import Column, Integer, String, ForeignKey, Date, Text, Boolean , ARRAY
 from sqlalchemy.orm import relationship
 from flask_appbuilder import Model
 
 
 class LabelResponseOptions(Model):
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), unique=True, nullable=False)
+    labelResponseOptions = Column(String(50), unique=True, nullable=False)
+    requestedShipment = relationship("RequestedShipment")
 
     def __repr__(self):
         return self.name
 
+class ShippingChargesPayment(Model):
+    paymentType = Column(String(50), unique=True, nullable=False)
+
+class ShipmentSpecialServices(Model):
+    specialServiceTypes = Column(ARRAY, unique=True, nullable=False)
 
 class RequestedShipment(Model):
     id = Column(Integer, primary_key=True)
-    name = Column(String(50), unique=True, nullable=False)
+    shipDatestamp = Column(String(50),  nullable=False)
+    serviceType = Column(String(50),   nullable=False)
+    packagingType = Column(String(50),   nullable=False)
+    pickupType = Column(String(50),  nullable=False)
+    blockInsightVisibility = Column(Boolean,   nullable=False)
+    shippingChargesPayment = relationship("ShippingChargesPayment")
 
     def __repr__(self):
         return self.name
