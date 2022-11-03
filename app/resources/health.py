@@ -1,5 +1,6 @@
 
 from app.helper.mailer import Mailer
+from app.service.create_freight_shipment import FedexService
 import werkzeug
 werkzeug.cached_property = werkzeug.utils.cached_property
 import flask.scaffold
@@ -17,6 +18,6 @@ mailer = Mailer()
 class Health(Resource):
     @health_ns.doc('Get Container health', security = 'apiKey')
     def get(self):
-        
+        check_fedex = FedexService().test()
         return {'status': 'up'}, 200
  
