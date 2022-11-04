@@ -25,7 +25,8 @@ class Config(object):
     )
 
     SQLALCHEMY_BINDS = {
-        'db_deepblu': 'mysql://'+str(os.getenv("MYSQL_USER"))+':'+str(os.getenv("MYSQL_PASSWORD"))+'@'+str(os.getenv("MYSQL_URL"))+':'+str(os.getenv("MYSQL_PORT"))+'/'+str(os.getenv("MYSQL_DB_DEEPBLU")) 
+        'db_deepblu': 'mysql://'+str(os.getenv("MYSQL_USER"))+':'+str(os.getenv("MYSQL_PASSWORD"))+'@'+str(os.getenv("MYSQL_URL"))+':'+str(os.getenv("MYSQL_PORT"))+'/'+str(os.getenv("MYSQL_DB_DEEPBLU")),
+        'db_deepblu_digest': 'mysql://'+str(os.getenv("MYSQL_USER"))+':'+str(os.getenv("MYSQL_PASSWORD"))+'@'+str(os.getenv("MYSQL_URL"))+':'+str(os.getenv("MYSQL_PORT"))+'/'+str(os.getenv("MYSQL_DB_DEEPBLU_DIGEST")) 
     }
 
 
